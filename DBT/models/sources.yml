@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: RAW_DATA
+    database: CRIME_DB
+    schema: SOURCES
+    tables:
+      - name: SOURCES_CRIME_DATA
+        description: "UK Police crime data"
