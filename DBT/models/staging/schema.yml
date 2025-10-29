@@ -28,3 +28,5 @@ models:
         description: "Outcome of the investigation"
       - name: CONTEXT
         description: "Additional context if available"
+      - name: LAST_UPDATED
+        description: "Timestamp when the record was loaded into the model"

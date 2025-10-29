@@ -1,13 +1,13 @@
-{{ 
-  config(materialized = 'table')
-}}
+{{ config(
+    materialized = 'incremental'
+) }}
 
-WITH RAW AS (
-  SELECT 
-    * 
+WITH RAW_DATA AS (
+  SELECT * 
   FROM {{ ref('stage_crime_data') }}
 ),
-TRANSFORMED AS (
+
+TRANSFORMED_DATA AS (
   SELECT
     CRIME_ID,
     TRY_TO_DATE(MONTH || '-01') AS CRIME_DATE,
@@ -20,9 +20,25 @@ TRANSFORMED AS (
     LSOA_NAME,
     CRIME_TYPE,
     LAST_OUTCOME,
-    NULLIF(CONTEXT, '') AS CONTEXT
-  FROM RAW
-  WHERE
-   UPDATED_LOCATION != 'No Location'
+    CONTEXT,
+    LAST_UPDATED
+  FROM RAW_DATA
+  WHERE UPDATED_LOCATION != 'No Location'
+
+  {% if is_incremental() %}
+    AND LAST_UPDATED > (SELECT MAX(LAST_UPDATED) FROM {{ this }})
+  {% endif %}
+),
+
+DEDUPLICATED_DATA AS (
+  SELECT * FROM 
+  (
+    SELECT 
+      *,
+      ROW_NUMBER() OVER (PARTITION BY CRIME_ID, UPDATED_LOCATION ORDER BY LAST_UPDATED DESC) AS RN
+    FROM TRANSFORMED_DATA
+  )
+  WHERE RN = 1
 )
-SELECT * FROM TRANSFORMED
+
+SELECT * FROM DEDUPLICATED_DATA

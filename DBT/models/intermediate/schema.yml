@@ -1,8 +1,11 @@
 version: 2
+
 models:
   - name: int_crime_data
+    description: "Intermediate model for cleaned and transformed crime data"
     columns:
       - name: CRIME_ID
+          - not_null
       - name: CRIME_DATE
         tests:
           - not_null
@@ -24,3 +27,7 @@ models:
           - not_null
       - name: LAST_OUTCOME
       - name: CONTEXT
+      - name: LAST_UPDATED
+        description: "Timestamp when the record was staged into the model"
+        tests:
+          - not_null
