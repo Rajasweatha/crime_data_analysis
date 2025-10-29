@@ -1,0 +1,26 @@
+version: 2
+models:
+  - name: int_crime_data
+    columns:
+      - name: CRIME_ID
+      - name: CRIME_DATE
+        tests:
+          - not_null
+      - name: REPORTED_BY
+        tests:
+          - not_null
+      - name: FALLS_WITHIN
+        tests:
+          - not_null
+      - name: LONGITUDE
+      - name: LATITUDE
+      - name: UPDATED_LOCATION
+        tests:
+          - not_null
+      - name: LSOA_CODE
+      - name: LSOA_NAME
+      - name: CRIME_TYPE
+        tests:
+          - not_null
+      - name: LAST_OUTCOME
+      - name: CONTEXT

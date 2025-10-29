@@ -1,0 +1,11 @@
+SELECT 
+    CRIME_DATE,
+    REPORTED_BY,
+    CRIME_TYPE,
+    COUNT(*) AS CRIME_COUNT
+FROM 
+    {{ ref('int_crime_data')}}
+GROUP BY 
+    ALL
+ORDER BY 
+    REPORTED_BY, CRIME_COUNT DESC
