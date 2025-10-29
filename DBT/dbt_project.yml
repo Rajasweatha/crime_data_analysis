@@ -39,3 +39,6 @@ models:
 
     final:
       +schema: FINAL
+
+    exports:
+      +schema: EXPORTS
