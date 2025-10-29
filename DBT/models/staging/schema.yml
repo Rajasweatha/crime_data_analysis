@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stage_crime_data
+    description: "Combined crime data from Thames Valley and Surrey street"
+    columns:
+      - name: CRIME_ID
+        description: "Unique identifier for each crime record"
+      - name: MONTH
+        description: "Month of the reported crime"
+      - name: REPORTED_BY
+        description: "Police authority that reported the crime"
+      - name: FALLS_WITHIN
+        description: "Jurisdiction of the reporting authority"
+      - name: LONGITUDE
+        description: "Longitude of the crime location"
+      - name: LATITUDE
+        description: "Latitude of the crime location"
+      - name: LOCATION
+        description: "Street or area where the crime occurred"
+      - name: LSOA_CODE
+        description: "Lower Super Output Area code"
+      - name: LSOA_NAME
+        description: "Lower Super Output Area name"
+      - name: CRIME_TYPE
+        description: "Type of crime committed"
+      - name: LAST_OUTCOME
+        description: "Outcome of the investigation"
+      - name: CONTEXT
+        description: "Additional context if available"
