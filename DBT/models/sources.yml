@@ -7,3 +7,36 @@ sources:
     tables:
       - name: SOURCES_CRIME_DATA
         description: "UK Police crime data"
+        columns:
+          - name: CRIME_ID
+            description: "Unique identifier for each crime record"
+          - name: MONTH
+            description: "Month of the crime occurrence"
+            tests:
+              - not_null
+          - name: REPORTED_BY
+            description: "Police force that reported the crime"
+            tests:
+              - not_null
+          - name: FALLS_WITHIN
+            description: "Jurisdiction or boundary the crime falls within"
+            tests:
+              - not_null
+          - name: LONGITUDE
+            description: "Longitude of the crime location"
+          - name: LATITUDE
+            description: "Latitude of the crime location"
+          - name: LOCATION
+            description: "Original location string from source"
+          - name: LSOA_CODE
+            description: "Lower Super Output Area code"
+          - name: LSOA_NAME
+            description: "Lower Super Output Area name"
+          - name: CRIME_TYPE
+            description: "Type/category of the crime"
+            tests:
+              - not_null
+          - name: LAST_OUTCOME
+            description: "Outcome of the crime investigation"
+          - name: CONTEXT
+            description: "Additional context or notes"
