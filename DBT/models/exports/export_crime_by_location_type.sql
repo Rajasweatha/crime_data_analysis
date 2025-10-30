@@ -14,7 +14,7 @@ FROM
     {{ ref('int_crime_data') }}
 WHERE 
     {% if is_incremental() %}
-        DATE(LAST_UPDATED) = CURRENT_DATE - 1
+        DATE(LAST_UPDATED) = CURRENT_DATE
     {% else %}
         1=1
     {% endif %}
